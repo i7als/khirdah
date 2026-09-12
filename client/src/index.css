@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@fontsource/tajawal/400.css";
+@import "@fontsource/tajawal/500.css";
+@import "@fontsource/tajawal/700.css";
+
+@theme {
+  --font-sans: "Tajawal", system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800;
+}
