@@ -3,14 +3,14 @@ import TransactionRow from "./TransactionRow";
 export default function TransactionList({ transactions, onCategoryChange }) {
   if (transactions.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
+      <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
         لا توجد معاملات.
       </p>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
       <table className="w-full text-sm">
         <thead className="bg-slate-50 text-slate-500">
           <tr>

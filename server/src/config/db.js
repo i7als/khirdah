@@ -1,4 +1,10 @@
+import dns from "node:dns";
 import mongoose from "mongoose";
+
+// This machine's configured DNS resolver intermittently returns malformed
+// responses (EBADRESP) for the SRV/TXT lookups that mongodb+srv:// needs.
+// Public resolvers handle these record types reliably, so use them instead.
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 const RETRY_DELAY_MS = 3000;
 const MAX_ATTEMPTS = 5;

@@ -27,19 +27,19 @@ export default function AnalysisPage() {
 
       {summary && (
         <div className="mb-6 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
             <p className="mb-1 text-sm text-slate-500">إجمالي الدخل</p>
             <p className="text-2xl font-bold text-green-600" dir="ltr">
               {summary.totalIncome} KWD
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
             <p className="mb-1 text-sm text-slate-500">إجمالي المصروف</p>
             <p className="text-2xl font-bold text-red-600" dir="ltr">
               {summary.totalExpense} KWD
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
             <p className="mb-1 text-sm text-slate-500">الصافي</p>
             <p
               className={`text-2xl font-bold ${summary.net >= 0 ? "text-green-600" : "text-red-600"}`}
@@ -52,11 +52,11 @@ export default function AnalysisPage() {
       )}
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
           <h2 className="mb-3 text-lg font-semibold text-slate-800">المصروفات حسب التصنيف</h2>
           <CategoryPieChart data={byCategory} />
         </div>
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
           <h2 className="mb-3 text-lg font-semibold text-slate-800">الدخل والمصروف الشهري</h2>
           <IncomeExpenseTrendChart data={trend} />
         </div>

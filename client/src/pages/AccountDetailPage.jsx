@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { fetchAccount } from "../api/accountApi";
 import { fetchTransactions, updateTransactionCategory } from "../api/transactionApi";
 import TransactionList from "../components/transactions/TransactionList";
@@ -27,9 +28,10 @@ export default function AccountDetailPage() {
     );
     try {
       await updateTransactionCategory(transactionId, newCategory);
+      toast.success("تم تحديث التصنيف");
     } catch (err) {
       setTransactions(previous);
-      setError(err.response?.data?.message || err.message);
+      toast.error(err.response?.data?.message || err.message);
     }
   }
 
@@ -42,7 +44,7 @@ export default function AccountDetailPage() {
       {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
 
       {account && (
-        <div className="mb-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
           <p className="text-sm text-slate-500">{account.bank?.name}</p>
           <p className="font-mono text-sm text-slate-400" dir="ltr">
             {account.accountNumberMasked}

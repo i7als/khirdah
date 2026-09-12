@@ -3,8 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import LogoIcon from "./LogoIcon";
 
 const navLinkClass = ({ isActive }) =>
-  `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-    isActive ? "bg-blue-600 text-white" : "text-slate-600 hover:bg-slate-100"
+  `px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 active:scale-95 ${
+    isActive ? "bg-blue-600 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
   }`;
 
 export default function Navbar() {
@@ -28,7 +28,7 @@ export default function Navbar() {
             <span className="hidden text-sm text-slate-500 sm:inline">{user?.name}</span>
             <button
               onClick={handleLogout}
-              className="text-sm font-medium text-red-600 hover:text-red-700"
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-50 active:scale-95"
             >
               تسجيل الخروج
             </button>

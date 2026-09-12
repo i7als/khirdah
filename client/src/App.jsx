@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
@@ -13,6 +14,27 @@ import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <AuthProvider>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            direction: "rtl",
+            fontFamily: "Tajawal, system-ui, sans-serif",
+            borderRadius: "9999px",
+            padding: "10px 20px",
+            fontSize: "14px",
+          },
+          success: {
+            style: { background: "#16a34a", color: "#fff" },
+            iconTheme: { primary: "#fff", secondary: "#16a34a" },
+          },
+          error: {
+            style: { background: "#dc2626", color: "#fff" },
+            iconTheme: { primary: "#fff", secondary: "#dc2626" },
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/login" element={<LoginPage />} />

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+const cardClass =
+  "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md";
+
 export default function DashboardPage() {
   const { user } = useAuth();
 
@@ -10,24 +13,15 @@ export default function DashboardPage() {
       <p className="mb-6 text-slate-500">{user?.email}</p>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Link
-          to="/connect-bank"
-          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-        >
+        <Link to="/connect-bank" className={cardClass}>
           <p className="mb-1 text-lg font-semibold text-blue-600">ربط حساب بنكي</p>
           <p className="text-sm text-slate-500">أضف حسابًا جديدًا (محاكاة)</p>
         </Link>
-        <Link
-          to="/accounts"
-          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-        >
+        <Link to="/accounts" className={cardClass}>
           <p className="mb-1 text-lg font-semibold text-blue-600">حساباتي</p>
           <p className="text-sm text-slate-500">عرض الأرصدة والمعاملات</p>
         </Link>
-        <Link
-          to="/analysis"
-          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-        >
+        <Link to="/analysis" className={cardClass}>
           <p className="mb-1 text-lg font-semibold text-blue-600">تحليل الإنفاق</p>
           <p className="text-sm text-slate-500">إحصائيات ورسوم بيانية</p>
         </Link>

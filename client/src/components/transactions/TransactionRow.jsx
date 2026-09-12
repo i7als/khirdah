@@ -2,7 +2,7 @@ import CategorySelect from "./CategorySelect";
 
 export default function TransactionRow({ transaction, onCategoryChange }) {
   return (
-    <tr className="hover:bg-slate-50">
+    <tr className="transition-colors hover:bg-slate-50">
       <td className="whitespace-nowrap px-4 py-3 text-slate-500">
         {new Date(transaction.date).toLocaleDateString("ar-KW")}
       </td>
