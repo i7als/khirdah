@@ -23,3 +23,15 @@ export const CATEGORY_COLORS = {
   "تحويلات": "#4a3aa7",
   "أخرى": "#e34948",
 };
+
+// Same hues, stepped for the dark chart surface (from the validated palette).
+export const CATEGORY_COLORS_DARK = {
+  "طعام وشراب": "#3987e5",
+  "مواصلات": "#d95926",
+  "تسوق": "#199e70",
+  "فواتير واشتراكات": "#c98500",
+  "ترفيه": "#d55181",
+  "صحة": "#008300",
+  "تحويلات": "#9085e9",
+  "أخرى": "#e66767",
+};

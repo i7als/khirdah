@@ -3,10 +3,12 @@
 @import "@fontsource/tajawal/500.css";
 @import "@fontsource/tajawal/700.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Tajawal", system-ui, sans-serif;
 }
 
 body {
-  @apply bg-slate-50 text-slate-800;
+  @apply bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100;
 }

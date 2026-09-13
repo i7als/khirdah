@@ -1,0 +1,234 @@
+export const translations = {
+  ar: {
+    nav: {
+      home: "الرئيسية",
+      accounts: "حساباتي",
+      analysis: "تحليل الإنفاق",
+      logout: "تسجيل الخروج",
+    },
+    auth: {
+      login: "تسجيل الدخول",
+      register: "إنشاء حساب",
+      name: "الاسم",
+      namePlaceholder: "اسمك الكامل",
+      email: "البريد الإلكتروني",
+      emailPlaceholder: "example@email.com",
+      password: "كلمة المرور",
+      passwordPlaceholder: "••••••••",
+      passwordHintPlaceholder: "6 أحرف على الأقل",
+      loginButton: "دخول",
+      loginLoading: "جاري الدخول...",
+      registerButton: "تسجيل",
+      registerLoading: "جاري الإنشاء...",
+      noAccount: "ما عندك حساب؟",
+      haveAccount: "لديك حساب بالفعل؟",
+    },
+    dashboard: {
+      welcome: "مرحبًا، {name}",
+      connectBankTitle: "ربط حساب بنكي",
+      connectBankSubtitle: "أضف حسابًا جديدًا (محاكاة)",
+      accountsTitle: "حساباتي",
+      accountsSubtitle: "عرض الأرصدة والمعاملات",
+      analysisTitle: "تحليل الإنفاق",
+      analysisSubtitle: "إحصائيات ورسوم بيانية",
+    },
+    connectBank: {
+      title: "ربط حساب بنكي",
+      chooseBank: "اختر بنكًا لبدء المحاكاة:",
+      noBanks: "لا توجد بنوك متاحة حاليًا.",
+      simulationOnly: "محاكاة فقط",
+      simulationNotice: "هذا ليس اتصالاً حقيقيًا بـ {bank}. أي قيمة تُقبل هنا.",
+      username: "اسم المستخدم (وهمي)",
+      usernamePlaceholder: "أي اسم مستخدم",
+      password: "كلمة المرور (وهمية)",
+      passwordPlaceholder: "أي كلمة مرور",
+      connect: "ربط",
+      connecting: "جاري الربط...",
+      cancel: "إلغاء",
+      successTitle: "تم الربط بنجاح",
+      successToast: "تم الربط بنجاح — تمت إضافة {count} معاملة",
+      newBalance: "رصيد الحساب الجديد:",
+      transactionsAdded: "تمت إضافة {count} معاملة.",
+      viewAccounts: "عرض حساباتي ←",
+    },
+    accounts: {
+      title: "حساباتي",
+      addNew: "+ ربط حساب جديد",
+      noAccounts: "لا توجد حسابات مرتبطة بعد.",
+      viewTransactions: "عرض المعاملات",
+      backToAccounts: "← رجوع للحسابات",
+      transactions: "المعاملات",
+      noTransactions: "لا توجد معاملات.",
+      categoryUpdated: "تم تحديث التصنيف",
+    },
+    transactions: {
+      date: "التاريخ",
+      merchant: "التاجر",
+      category: "التصنيف",
+      amount: "المبلغ",
+    },
+    analysis: {
+      title: "تحليل الإنفاق",
+      totalIncome: "إجمالي الدخل",
+      totalExpense: "إجمالي المصروف",
+      net: "الصافي",
+      byCategory: "المصروفات حسب التصنيف",
+      monthlyTrend: "الدخل والمصروف الشهري",
+      income: "دخل",
+      expense: "مصروف",
+      notEnoughData: "لا توجد بيانات كافية.",
+    },
+    notFound: {
+      message: "الصفحة غير موجودة.",
+      backHome: "رجوع للوحة التحكم",
+    },
+    loading: "جاري التحميل...",
+  },
+  en: {
+    nav: {
+      home: "Home",
+      accounts: "Accounts",
+      analysis: "Analysis",
+      logout: "Log out",
+    },
+    auth: {
+      login: "Sign in",
+      register: "Create account",
+      name: "Name",
+      namePlaceholder: "Your full name",
+      email: "Email",
+      emailPlaceholder: "example@email.com",
+      password: "Password",
+      passwordPlaceholder: "••••••••",
+      passwordHintPlaceholder: "At least 6 characters",
+      loginButton: "Sign in",
+      loginLoading: "Signing in...",
+      registerButton: "Register",
+      registerLoading: "Creating...",
+      noAccount: "Don't have an account?",
+      haveAccount: "Already have an account?",
+    },
+    dashboard: {
+      welcome: "Welcome, {name}",
+      connectBankTitle: "Link a Bank",
+      connectBankSubtitle: "Add a new account (simulated)",
+      accountsTitle: "My Accounts",
+      accountsSubtitle: "View balances and transactions",
+      analysisTitle: "Spending Analysis",
+      analysisSubtitle: "Stats and charts",
+    },
+    connectBank: {
+      title: "Link a Bank",
+      chooseBank: "Choose a bank to start the simulation:",
+      noBanks: "No banks available right now.",
+      simulationOnly: "Simulation only",
+      simulationNotice: "This is not a real connection to {bank}. Any value is accepted here.",
+      username: "Username (fake)",
+      usernamePlaceholder: "Any username",
+      password: "Password (fake)",
+      passwordPlaceholder: "Any password",
+      connect: "Link",
+      connecting: "Linking...",
+      cancel: "Cancel",
+      successTitle: "Linked successfully",
+      successToast: "Linked successfully — {count} transactions added",
+      newBalance: "New account balance:",
+      transactionsAdded: "{count} transactions added.",
+      viewAccounts: "View my accounts ←",
+    },
+    accounts: {
+      title: "My Accounts",
+      addNew: "+ Link new account",
+      noAccounts: "No accounts linked yet.",
+      viewTransactions: "View transactions",
+      backToAccounts: "← Back to accounts",
+      transactions: "Transactions",
+      noTransactions: "No transactions.",
+      categoryUpdated: "Category updated",
+    },
+    transactions: {
+      date: "Date",
+      merchant: "Merchant",
+      category: "Category",
+      amount: "Amount",
+    },
+    analysis: {
+      title: "Spending Analysis",
+      totalIncome: "Total Income",
+      totalExpense: "Total Expense",
+      net: "Net",
+      byCategory: "Spending by Category",
+      monthlyTrend: "Monthly Income & Expense",
+      income: "Income",
+      expense: "Expense",
+      notEnoughData: "Not enough data yet.",
+    },
+    notFound: {
+      message: "Page not found.",
+      backHome: "Back to dashboard",
+    },
+    loading: "Loading...",
+  },
+};
+
+// Category names as stored in the database are always Arabic (fixed enum).
+// This maps that canonical value to its English display label.
+export const CATEGORY_LABELS_EN = {
+  "طعام وشراب": "Food & Drink",
+  "مواصلات": "Transport",
+  "تسوق": "Shopping",
+  "فواتير واشتراكات": "Bills & Subscriptions",
+  "ترفيه": "Entertainment",
+  "صحة": "Health",
+  "راتب": "Salary",
+  "تحويلات": "Transfers",
+  "أخرى": "Other",
+};
+
+// Bank names as stored are Arabic (with an English abbreviation in
+// parentheses for some). This maps to a fully English display name.
+export const BANK_NAMES_EN = {
+  "بيت التمويل الكويتي (KFH)": "Kuwait Finance House (KFH)",
+  "بنك الكويت الوطني (NBK)": "National Bank of Kuwait (NBK)",
+  "البنك التجاري الكويتي (CBK)": "Commercial Bank of Kuwait (CBK)",
+  "بنك بوبيان (Boubyan Bank)": "Boubyan Bank",
+  "بنك الخليج (Gulf Bank)": "Gulf Bank",
+  "بنك وربة (Warba Bank)": "Warba Bank",
+  "البنك الأهلي الكويتي (ABK)": "Al Ahli Bank of Kuwait (ABK)",
+  "البنك الأهلي المتحد (AUB)": "Ahli United Bank (AUB)",
+  "بنك برقان (Burgan Bank)": "Burgan Bank",
+};
+
+// Known backend API messages (Arabic, fixed finite set from our own
+// controllers) mapped to English, so API errors translate without any
+// backend changes.
+export const API_MESSAGES_EN = {
+  "الاسم والبريد وكلمة المرور مطلوبة": "Name, email, and password are required",
+  "البريد الإلكتروني مستخدم بالفعل": "This email is already in use",
+  "البريد وكلمة المرور مطلوبة": "Email and password are required",
+  "بيانات الدخول غير صحيحة": "Invalid email or password",
+  "المستخدم غير موجود": "User not found",
+  "غير مصرح": "Unauthorized",
+  "الجلسة غير صالحة": "Invalid session",
+  "bankId مطلوب": "bankId is required",
+  "البنك غير موجود": "Bank not found",
+  "الحساب غير موجود": "Account not found",
+  "تصنيف غير صالح": "Invalid category",
+  "المعاملة غير موجودة": "Transaction not found",
+  "خطأ في السيرفر": "Server error",
+};
+
+export function translateCategory(category, lang) {
+  if (lang === "en") return CATEGORY_LABELS_EN[category] || category;
+  return category;
+}
+
+export function translateBankName(name, lang) {
+  if (lang === "en") return BANK_NAMES_EN[name] || name;
+  return name;
+}
+
+export function translateApiMessage(message, lang) {
+  if (lang === "en") return API_MESSAGES_EN[message] || message;
+  return message;
+}

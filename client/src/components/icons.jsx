@@ -66,6 +66,39 @@ export function WalletIcon(props) {
   );
 }
 
+export function SunIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" {...props}>
+      <circle cx="12" cy="12" r="4.5" />
+      <path
+        strokeLinecap="round"
+        d="M12 2.5v2M12 19.5v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2.5 12h2M19.5 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+      />
+    </svg>
+  );
+}
+
+export function MoonIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20 14.5A8.5 8.5 0 119.5 4a6.5 6.5 0 0010.5 10.5z"
+      />
+    </svg>
+  );
+}
+
+export function GlobeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path strokeLinecap="round" d="M3.5 12h17M12 3.5c2.2 2.3 3.4 5.2 3.4 8.5s-1.2 6.2-3.4 8.5c-2.2-2.3-3.4-5.2-3.4-8.5S9.8 5.8 12 3.5z" />
+    </svg>
+  );
+}
+
 export function BuildingIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
