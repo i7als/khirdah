@@ -124,6 +124,15 @@ export function EyeOffIcon(props) {
   );
 }
 
+export function SearchIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path strokeLinecap="round" d="M20 20l-4.8-4.8" />
+    </svg>
+  );
+}
+
 export function BuildingIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>

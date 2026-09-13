@@ -1,12 +1,26 @@
 import { useLanguage } from "../../context/LanguageContext";
 import { TableRowSkeleton } from "../common/Skeleton";
+import EmptyState from "../common/EmptyState";
 import TransactionRow from "./TransactionRow";
 
-export default function TransactionList({ transactions, onCategoryChange, loading }) {
+export default function TransactionList({
+  transactions,
+  onCategoryChange,
+  loading,
+  filtersActive,
+  onClearFilters,
+}) {
   const { t } = useLanguage();
 
   if (!loading && transactions.length === 0) {
-    return (
+    return filtersActive ? (
+      <EmptyState
+        title={t("accounts.noResultsTitle")}
+        subtitle={t("accounts.noResultsSubtitle")}
+        actionLabel={t("accounts.clearFilters")}
+        onAction={onClearFilters}
+      />
+    ) : (
       <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
         {t("accounts.noTransactions")}
       </p>

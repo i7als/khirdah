@@ -4,7 +4,7 @@ import { CATEGORIES } from "../utils/categories.js";
 
 export async function listTransactions(req, res, next) {
   try {
-    const { accountId, category, type, from, to, page = 1, limit = 20 } = req.query;
+    const { accountId, category, type, from, to, search, page = 1, limit = 20 } = req.query;
     const filter = { user: req.userId };
 
     if (accountId) {
@@ -16,6 +16,10 @@ export async function listTransactions(req, res, next) {
     }
     if (category) filter.category = category;
     if (type) filter.type = type;
+    if (search) {
+      const safe = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      filter.merchant = { $regex: safe, $options: "i" };
+    }
     if (from || to) {
       filter.date = {};
       if (from) filter.date.$gte = new Date(from);

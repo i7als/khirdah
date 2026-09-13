@@ -1,4 +1,6 @@
 import { useLanguage } from "../../context/LanguageContext";
+import { WalletIcon } from "../icons";
+import EmptyState from "../common/EmptyState";
 import AccountCard from "./AccountCard";
 
 export default function AccountList({ accounts }) {
@@ -6,9 +8,13 @@ export default function AccountList({ accounts }) {
 
   if (accounts.length === 0) {
     return (
-      <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-        {t("accounts.noAccounts")}
-      </p>
+      <EmptyState
+        icon={WalletIcon}
+        title={t("accounts.noAccountsTitle")}
+        subtitle={t("accounts.noAccountsSubtitle")}
+        actionLabel={t("accounts.noAccountsCta")}
+        actionTo="/connect-bank"
+      />
     );
   }
 

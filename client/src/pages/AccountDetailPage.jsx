@@ -7,8 +7,11 @@ import { useLanguage } from "../context/LanguageContext";
 import { translateApiMessage, translateBankName } from "../i18n/translations";
 import { formatNumber } from "../utils/formatNumber";
 import TransactionList from "../components/transactions/TransactionList";
+import TransactionFilters from "../components/transactions/TransactionFilters";
 import ConfirmDialog from "../components/common/ConfirmDialog";
 import { SkeletonBox } from "../components/common/Skeleton";
+
+const EMPTY_FILTERS = { search: "", category: "", type: "" };
 
 export default function AccountDetailPage() {
   const { id } = useParams();
@@ -17,23 +20,32 @@ export default function AccountDetailPage() {
   const [account, setAccount] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [txLoading, setTxLoading] = useState(true);
   const [error, setError] = useState(null);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([
-      fetchAccount(id),
-      fetchTransactions({ accountId: id, limit: 100 }),
-    ])
-      .then(([accountData, txData]) => {
-        setAccount(accountData);
-        setTransactions(txData.items);
-      })
+    fetchAccount(id)
+      .then(setAccount)
       .catch((err) => setError(translateApiMessage(err.response?.data?.message, lang) || err.message))
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  useEffect(() => {
+    setTxLoading(true);
+    const timeout = setTimeout(() => {
+      fetchTransactions({ accountId: id, limit: 100, ...filters })
+        .then((txData) => setTransactions(txData.items))
+        .catch((err) => setError(translateApiMessage(err.response?.data?.message, lang) || err.message))
+        .finally(() => setTxLoading(false));
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [id, lang, filters]);
+
+  const filtersActive = !!(filters.search || filters.category || filters.type);
 
   async function handleCategoryChange(transactionId, newCategory) {
     const previous = transactions;
@@ -128,10 +140,13 @@ export default function AccountDetailPage() {
         <h2 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">
           {t("accounts.transactions")}
         </h2>
+        <TransactionFilters filters={filters} onChange={setFilters} />
         <TransactionList
           transactions={transactions}
           onCategoryChange={handleCategoryChange}
-          loading={loading}
+          loading={txLoading}
+          filtersActive={filtersActive}
+          onClearFilters={() => setFilters(EMPTY_FILTERS)}
         />
       </div>
 

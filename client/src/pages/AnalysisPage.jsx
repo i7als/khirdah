@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchSummary, fetchByCategory, fetchTrend } from "../api/analysisApi";
+import { fetchAccounts } from "../api/accountApi";
 import CategoryPieChart from "../components/analysis/CategoryPieChart";
 import IncomeExpenseTrendChart from "../components/analysis/IncomeExpenseTrendChart";
 import { TrendingUpIcon, TrendingDownIcon, ScaleIcon } from "../components/icons";
@@ -7,6 +8,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { formatNumber } from "../utils/formatNumber";
 import { getDateRange } from "../utils/dateRange";
 import { StatCardSkeleton, ChartSkeleton } from "../components/common/Skeleton";
+import EmptyState from "../components/common/EmptyState";
 
 const RANGE_OPTIONS = [
   { key: "week", labelKey: "analysis.rangeWeek" },
@@ -25,6 +27,7 @@ export default function AnalysisPage() {
   const [trend, setTrend] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasAccounts, setHasAccounts] = useState(true);
 
   const statCards = [
     {
@@ -55,15 +58,33 @@ export default function AnalysisPage() {
     const { from, to, trendMonths } = getDateRange(rangeKey);
     const range = from ? { from, to } : {};
 
-    Promise.all([fetchSummary(range), fetchByCategory(range), fetchTrend(trendMonths)])
-      .then(([s, c, tr]) => {
+    Promise.all([fetchSummary(range), fetchByCategory(range), fetchTrend(trendMonths), fetchAccounts()])
+      .then(([s, c, tr, accounts]) => {
         setSummary(s);
         setByCategory(c);
         setTrend(tr);
+        setHasAccounts(accounts.length > 0);
       })
       .catch((err) => setError(err.response?.data?.message || err.message))
       .finally(() => setLoading(false));
   }, [rangeKey]);
+
+  if (!loading && !hasAccounts) {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-800 sm:text-3xl dark:text-slate-100">
+          {t("analysis.title")}
+        </h1>
+        <EmptyState
+          icon={ScaleIcon}
+          title={t("analysis.emptyTitle")}
+          subtitle={t("analysis.emptySubtitle")}
+          actionLabel={t("analysis.emptyCta")}
+          actionTo="/connect-bank"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
