@@ -8,10 +8,12 @@ import { translateApiMessage, translateBankName } from "../i18n/translations";
 import { formatNumber } from "../utils/formatNumber";
 import TransactionList from "../components/transactions/TransactionList";
 import TransactionFilters from "../components/transactions/TransactionFilters";
+import Pagination from "../components/transactions/Pagination";
 import ConfirmDialog from "../components/common/ConfirmDialog";
 import { SkeletonBox } from "../components/common/Skeleton";
 
 const EMPTY_FILTERS = { search: "", category: "", type: "" };
+const PAGE_SIZE = 20;
 
 export default function AccountDetailPage() {
   const { id } = useParams();
@@ -19,12 +21,14 @@ export default function AccountDetailPage() {
   const navigate = useNavigate();
   const [account, setAccount] = useState(null);
   const [transactions, setTransactions] = useState([]);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [txLoading, setTxLoading] = useState(true);
   const [error, setError] = useState(null);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -35,17 +39,25 @@ export default function AccountDetailPage() {
   }, [id, lang]);
 
   useEffect(() => {
+    setPage(1);
+  }, [filters]);
+
+  useEffect(() => {
     setTxLoading(true);
     const timeout = setTimeout(() => {
-      fetchTransactions({ accountId: id, limit: 100, ...filters })
-        .then((txData) => setTransactions(txData.items))
+      fetchTransactions({ accountId: id, limit: PAGE_SIZE, page, ...filters })
+        .then((txData) => {
+          setTransactions(txData.items);
+          setTotal(txData.total);
+        })
         .catch((err) => setError(translateApiMessage(err.response?.data?.message, lang) || err.message))
         .finally(() => setTxLoading(false));
     }, 300);
     return () => clearTimeout(timeout);
-  }, [id, lang, filters]);
+  }, [id, lang, filters, page]);
 
   const filtersActive = !!(filters.search || filters.category || filters.type);
+  const totalPages = Math.max(Math.ceil(total / PAGE_SIZE), 1);
 
   async function handleCategoryChange(transactionId, newCategory) {
     const previous = transactions;
@@ -148,6 +160,14 @@ export default function AccountDetailPage() {
           filtersActive={filtersActive}
           onClearFilters={() => setFilters(EMPTY_FILTERS)}
         />
+        {!txLoading && transactions.length > 0 && (
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={() => setPage((p) => Math.max(p - 1, 1))}
+            onNext={() => setPage((p) => Math.min(p + 1, totalPages))}
+          />
+        )}
       </div>
 
       {confirmingDelete && (

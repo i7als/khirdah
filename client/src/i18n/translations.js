@@ -3,6 +3,7 @@ export const translations = {
     common: {
       cancel: "إلغاء",
       confirm: "تأكيد",
+      sessionExpired: "انتهت الجلسة، الرجاء تسجيل الدخول مجددًا",
     },
     nav: {
       home: "الرئيسية",
@@ -73,6 +74,9 @@ export const translations = {
       noResultsTitle: "لا توجد نتائج مطابقة",
       noResultsSubtitle: "جرّب تغيير كلمة البحث أو الفلاتر.",
       clearFilters: "مسح الفلاتر",
+      pagePrev: "السابق",
+      pageNext: "التالي",
+      pageOf: "صفحة {page} من {totalPages}",
       viewTransactions: "عرض المعاملات",
       backToAccounts: "← رجوع للحسابات",
       transactions: "المعاملات",
@@ -122,6 +126,7 @@ export const translations = {
     common: {
       cancel: "Cancel",
       confirm: "Confirm",
+      sessionExpired: "Session expired, please log in again",
     },
     nav: {
       home: "Home",
@@ -192,6 +197,9 @@ export const translations = {
       noResultsTitle: "No matching results",
       noResultsSubtitle: "Try changing your search or filters.",
       clearFilters: "Clear filters",
+      pagePrev: "Previous",
+      pageNext: "Next",
+      pageOf: "Page {page} of {totalPages}",
       viewTransactions: "View transactions",
       backToAccounts: "← Back to accounts",
       transactions: "Transactions",
