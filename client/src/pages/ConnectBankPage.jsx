@@ -33,16 +33,18 @@ export default function ConnectBankPage() {
   }
 
   return (
-    <div>
-      <h1 className="mb-6 text-2xl font-bold text-slate-800">ربط حساب بنكي</h1>
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold tracking-tight text-slate-800 sm:text-3xl">
+        ربط حساب بنكي
+      </h1>
 
-      {loadError && <p className="mb-4 text-sm text-red-600">{loadError}</p>}
+      {loadError && <p className="text-sm text-red-600">{loadError}</p>}
 
       {!selectedBank && !result && (
-        <>
-          <p className="mb-3 text-sm text-slate-500">اختر بنكًا لبدء المحاكاة:</p>
+        <div className="space-y-3">
+          <p className="text-sm text-slate-500">اختر بنكًا لبدء المحاكاة:</p>
           <BankList banks={banks} onSelect={setSelectedBank} />
-        </>
+        </div>
       )}
 
       {selectedBank && (
@@ -55,7 +57,7 @@ export default function ConnectBankPage() {
       )}
 
       {result && (
-        <div className="max-w-sm rounded-2xl border border-green-200 bg-green-50 p-5">
+        <div className="max-w-sm rounded-2xl border border-green-200 bg-green-50 p-6">
           <h2 className="mb-2 font-semibold text-green-800">تم الربط بنجاح</h2>
           <p className="mb-3 text-sm text-green-700">
             رصيد الحساب الجديد:{" "}

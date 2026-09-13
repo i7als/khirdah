@@ -35,17 +35,38 @@ export default function AccountDetailPage() {
     }
   }
 
+  const bankColor = account?.bank?.colorHex || "#2563eb";
+
   return (
-    <div>
-      <Link to="/accounts" className="mb-4 inline-block text-sm text-blue-600 hover:underline">
+    <div className="space-y-8">
+      <Link to="/accounts" className="inline-block text-sm text-blue-600 hover:underline">
         ← رجوع للحسابات
       </Link>
 
-      {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       {account && (
-        <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-          <p className="text-sm text-slate-500">{account.bank?.name}</p>
+        <div
+          style={{ borderInlineStart: `4px solid ${bankColor}` }}
+          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div className="mb-2 flex items-center gap-2">
+            {account.bank?.logoUrl ? (
+              <img
+                src={account.bank.logoUrl}
+                alt={account.bank.name}
+                className="h-6 w-6 object-contain"
+              />
+            ) : (
+              <span
+                style={{ backgroundColor: bankColor }}
+                className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white"
+              >
+                {account.bank?.name?.[0]}
+              </span>
+            )}
+            <p className="text-sm text-slate-500">{account.bank?.name}</p>
+          </div>
           <p className="font-mono text-sm text-slate-400" dir="ltr">
             {account.accountNumberMasked}
           </p>
@@ -56,8 +77,10 @@ export default function AccountDetailPage() {
         </div>
       )}
 
-      <h2 className="mb-3 text-lg font-semibold text-slate-800">المعاملات</h2>
-      <TransactionList transactions={transactions} onCategoryChange={handleCategoryChange} />
+      <div>
+        <h2 className="mb-4 text-lg font-semibold text-slate-800">المعاملات</h2>
+        <TransactionList transactions={transactions} onCategoryChange={handleCategoryChange} />
+      </div>
     </div>
   );
 }

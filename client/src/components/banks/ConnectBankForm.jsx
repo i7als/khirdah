@@ -11,7 +11,7 @@ export default function ConnectBankForm({ bank, onSubmit, onCancel, submitting }
   }
 
   return (
-    <div className="max-w-sm rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+    <div className="max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
       <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-2 text-sm text-amber-700">
         <strong>محاكاة فقط</strong> — هذا ليس اتصالاً حقيقيًا بـ {bank.name}. أي قيمة تُقبل هنا.
       </p>
