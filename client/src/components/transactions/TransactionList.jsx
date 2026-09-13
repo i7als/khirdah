@@ -1,10 +1,11 @@
 import { useLanguage } from "../../context/LanguageContext";
+import { TableRowSkeleton } from "../common/Skeleton";
 import TransactionRow from "./TransactionRow";
 
-export default function TransactionList({ transactions, onCategoryChange }) {
+export default function TransactionList({ transactions, onCategoryChange, loading }) {
   const { t } = useLanguage();
 
-  if (transactions.length === 0) {
+  if (!loading && transactions.length === 0) {
     return (
       <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
         {t("accounts.noTransactions")}
@@ -24,9 +25,11 @@ export default function TransactionList({ transactions, onCategoryChange }) {
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-          {transactions.map((tx) => (
-            <TransactionRow key={tx._id} transaction={tx} onCategoryChange={onCategoryChange} />
-          ))}
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => <TableRowSkeleton key={i} />)
+            : transactions.map((tx) => (
+                <TransactionRow key={tx._id} transaction={tx} onCategoryChange={onCategoryChange} />
+              ))}
         </tbody>
       </table>
     </div>

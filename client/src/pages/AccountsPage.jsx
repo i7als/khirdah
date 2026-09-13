@@ -4,16 +4,20 @@ import { fetchAccounts } from "../api/accountApi";
 import { useLanguage } from "../context/LanguageContext";
 import { translateApiMessage } from "../i18n/translations";
 import AccountList from "../components/accounts/AccountList";
+import { AccountCardSkeleton } from "../components/common/Skeleton";
 
 export default function AccountsPage() {
   const { t, lang } = useLanguage();
   const [accounts, setAccounts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetchAccounts()
       .then(setAccounts)
-      .catch((err) => setError(translateApiMessage(err.response?.data?.message, lang) || err.message));
+      .catch((err) => setError(translateApiMessage(err.response?.data?.message, lang) || err.message))
+      .finally(() => setLoading(false));
   }, [lang]);
 
   return (
@@ -32,7 +36,15 @@ export default function AccountsPage() {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <AccountList accounts={accounts} />
+      {loading ? (
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <AccountCardSkeleton key={i} />
+          ))}
+        </div>
+      ) : (
+        <AccountList accounts={accounts} />
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import { translateBankName } from "../../i18n/translations";
+import { formatNumber } from "../../utils/formatNumber";
 
 export default function AccountCard({ account }) {
   const { lang } = useLanguage();
@@ -31,7 +32,7 @@ export default function AccountCard({ account }) {
         {account.accountNumberMasked}
       </p>
       <p className="text-2xl font-bold text-slate-800 dark:text-slate-100" dir="ltr">
-        {account.balance}{" "}
+        {formatNumber(account.balance)}{" "}
         <span className="text-base font-normal text-slate-500 dark:text-slate-400">
           {account.currency}
         </span>

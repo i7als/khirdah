@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { UserIcon, LockIcon } from "../icons";
+import { UserIcon } from "../icons";
+import PasswordInput from "../common/PasswordInput";
 import { useLanguage } from "../../context/LanguageContext";
 import { translateBankName } from "../../i18n/translations";
 
@@ -39,17 +40,12 @@ export default function ConnectBankForm({ bank, onSubmit, onCancel, submitting }
           <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
             {t("connectBank.password")}
           </label>
-          <div className="relative">
-            <LockIcon className="pointer-events-none absolute end-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder={t("connectBank.passwordPlaceholder")}
-              className="w-full rounded-xl border border-slate-300 py-2.5 ps-3 pe-10 text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-            />
-          </div>
+          <PasswordInput
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder={t("connectBank.passwordPlaceholder")}
+          />
         </div>
         <div className="flex gap-2 pt-1">
           <button

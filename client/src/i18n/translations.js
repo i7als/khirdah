@@ -1,5 +1,9 @@
 export const translations = {
   ar: {
+    common: {
+      cancel: "إلغاء",
+      confirm: "تأكيد",
+    },
     nav: {
       home: "الرئيسية",
       accounts: "حساباتي",
@@ -60,6 +64,10 @@ export const translations = {
       transactions: "المعاملات",
       noTransactions: "لا توجد معاملات.",
       categoryUpdated: "تم تحديث التصنيف",
+      disconnect: "فصل هذا الحساب",
+      disconnectTitle: "فصل الحساب؟",
+      disconnectBody: "سيتم حذف هذا الحساب وكل معاملاته نهائيًا. هذا الإجراء لا يمكن التراجع عنه.",
+      disconnected: "تم فصل الحساب",
     },
     transactions: {
       date: "التاريخ",
@@ -77,6 +85,12 @@ export const translations = {
       income: "دخل",
       expense: "مصروف",
       notEnoughData: "لا توجد بيانات كافية.",
+      rangeWeek: "هذا الأسبوع",
+      rangeMonth: "هذا الشهر",
+      range3Months: "٣ أشهر",
+      range6Months: "٦ أشهر",
+      rangeYear: "السنة",
+      rangeAll: "الكل",
     },
     notFound: {
       message: "الصفحة غير موجودة.",
@@ -85,6 +99,10 @@ export const translations = {
     loading: "جاري التحميل...",
   },
   en: {
+    common: {
+      cancel: "Cancel",
+      confirm: "Confirm",
+    },
     nav: {
       home: "Home",
       accounts: "Accounts",
@@ -145,6 +163,10 @@ export const translations = {
       transactions: "Transactions",
       noTransactions: "No transactions.",
       categoryUpdated: "Category updated",
+      disconnect: "Disconnect this account",
+      disconnectTitle: "Disconnect account?",
+      disconnectBody: "This account and all its transactions will be permanently deleted. This cannot be undone.",
+      disconnected: "Account disconnected",
     },
     transactions: {
       date: "Date",
@@ -162,6 +184,12 @@ export const translations = {
       income: "Income",
       expense: "Expense",
       notEnoughData: "Not enough data yet.",
+      rangeWeek: "This week",
+      rangeMonth: "This month",
+      range3Months: "3 months",
+      range6Months: "6 months",
+      rangeYear: "This year",
+      rangeAll: "All time",
     },
     notFound: {
       message: "Page not found.",

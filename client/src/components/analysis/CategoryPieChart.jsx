@@ -3,6 +3,7 @@ import { CATEGORY_COLORS, CATEGORY_COLORS_DARK } from "../../constants/categorie
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { translateCategory } from "../../i18n/translations";
+import { formatNumber } from "../../utils/formatNumber";
 
 export default function CategoryPieChart({ data }) {
   const { theme } = useTheme();
@@ -39,7 +40,7 @@ export default function CategoryPieChart({ data }) {
           ))}
         </Pie>
         <Tooltip
-          formatter={(value, name) => [`${value} KWD`, translateCategory(name, lang)]}
+          formatter={(value, name) => [`${formatNumber(value)} KWD`, translateCategory(name, lang)]}
           contentStyle={{
             borderRadius: 12,
             border: theme === "dark" ? "1px solid #334155" : "1px solid #e2e8f0",

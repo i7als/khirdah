@@ -7,3 +7,7 @@ export function fetchAccounts() {
 export function fetchAccount(id) {
   return axiosClient.get(`/accounts/${id}`).then((res) => res.data);
 }
+
+export function deleteAccount(id) {
+  return axiosClient.delete(`/accounts/${id}`);
+}

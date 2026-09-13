@@ -4,21 +4,26 @@ import toast from "react-hot-toast";
 import { fetchBanks, connectBank } from "../api/bankApi";
 import { useLanguage } from "../context/LanguageContext";
 import { translateApiMessage } from "../i18n/translations";
+import { formatNumber } from "../utils/formatNumber";
 import BankList from "../components/banks/BankList";
 import ConnectBankForm from "../components/banks/ConnectBankForm";
+import { BankListItemSkeleton } from "../components/common/Skeleton";
 
 export default function ConnectBankPage() {
   const { t, lang } = useLanguage();
   const [banks, setBanks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedBank, setSelectedBank] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState(null);
   const [loadError, setLoadError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetchBanks()
       .then(setBanks)
-      .catch((err) => setLoadError(translateApiMessage(err.response?.data?.message, lang) || err.message));
+      .catch((err) => setLoadError(translateApiMessage(err.response?.data?.message, lang) || err.message))
+      .finally(() => setLoading(false));
   }, [lang]);
 
   async function handleSubmit(payload) {
@@ -46,7 +51,15 @@ export default function ConnectBankPage() {
       {!selectedBank && !result && (
         <div className="space-y-3">
           <p className="text-sm text-slate-500 dark:text-slate-400">{t("connectBank.chooseBank")}</p>
-          <BankList banks={banks} onSelect={setSelectedBank} />
+          {loading ? (
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <BankListItemSkeleton key={i} />
+              ))}
+            </div>
+          ) : (
+            <BankList banks={banks} onSelect={setSelectedBank} />
+          )}
         </div>
       )}
 
@@ -67,7 +80,7 @@ export default function ConnectBankPage() {
           <p className="mb-3 text-sm text-green-700 dark:text-green-500">
             {t("connectBank.newBalance")}{" "}
             <span dir="ltr">
-              {result.account.balance} {result.account.currency}
+              {formatNumber(result.account.balance)} {result.account.currency}
             </span>{" "}
             {t("connectBank.transactionsAdded", { count: result.transactionCount })}
           </p>

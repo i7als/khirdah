@@ -1,11 +1,11 @@
 import axiosClient from "./axiosClient";
 
-export function fetchSummary() {
-  return axiosClient.get("/analysis/summary").then((res) => res.data);
+export function fetchSummary(range = {}) {
+  return axiosClient.get("/analysis/summary", { params: range }).then((res) => res.data);
 }
 
-export function fetchByCategory() {
-  return axiosClient.get("/analysis/by-category").then((res) => res.data);
+export function fetchByCategory(range = {}) {
+  return axiosClient.get("/analysis/by-category", { params: range }).then((res) => res.data);
 }
 
 export function fetchTrend(months = 6) {

@@ -99,6 +99,31 @@ export function GlobeIcon(props) {
   );
 }
 
+export function EyeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 12s3.5-7 9.75-7 9.75 7 9.75 7-3.5 7-9.75 7-9.75-7-9.75-7z"
+      />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.5 3.5l17 17M9.9 9.9a3 3 0 004.2 4.2M6.2 6.6C4 8.1 2.25 12 2.25 12s3.5 7 9.75 7c1.7 0 3.15-.5 4.35-1.2M10.6 5.2c.45-.08.9-.12 1.4-.12 6.25 0 9.75 7 9.75 7-.5 1-1.25 2.15-2.25 3.15"
+      />
+    </svg>
+  );
+}
+
 export function BuildingIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>

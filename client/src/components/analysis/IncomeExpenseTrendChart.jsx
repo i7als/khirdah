@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
+import { formatNumber } from "../../utils/formatNumber";
 
 export default function IncomeExpenseTrendChart({ data }) {
   const { theme } = useTheme();
@@ -30,9 +31,12 @@ export default function IncomeExpenseTrendChart({ data }) {
       <BarChart data={data} barGap={4}>
         <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
         <XAxis dataKey="month" tick={{ fontFamily: "Tajawal", fontSize: 12, fill: tickColor }} />
-        <YAxis tick={{ fontFamily: "Tajawal", fontSize: 12, fill: tickColor }} />
+        <YAxis
+          tick={{ fontFamily: "Tajawal", fontSize: 12, fill: tickColor }}
+          tickFormatter={formatNumber}
+        />
         <Tooltip
-          formatter={(value) => `${value} KWD`}
+          formatter={(value) => `${formatNumber(value)} KWD`}
           contentStyle={{
             borderRadius: 12,
             border: theme === "dark" ? "1px solid #334155" : "1px solid #e2e8f0",

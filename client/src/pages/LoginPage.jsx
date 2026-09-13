@@ -5,7 +5,8 @@ import { useAuth } from "../context/AuthContext";
 import { useLanguage } from "../context/LanguageContext";
 import { translateApiMessage } from "../i18n/translations";
 import Wordmark from "../components/layout/Wordmark";
-import { MailIcon, LockIcon } from "../components/icons";
+import PasswordInput from "../components/common/PasswordInput";
+import { MailIcon } from "../components/icons";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -63,18 +64,13 @@ export default function LoginPage() {
             <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
               {t("auth.password")}
             </label>
-            <div className="relative">
-              <LockIcon className="pointer-events-none absolute end-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-              <input
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                required
-                placeholder={t("auth.passwordPlaceholder")}
-                className="w-full rounded-xl border border-slate-300 py-2.5 ps-3 pe-10 text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-              />
-            </div>
+            <PasswordInput
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              placeholder={t("auth.passwordPlaceholder")}
+            />
           </div>
           <button
             type="submit"

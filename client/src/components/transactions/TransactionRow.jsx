@@ -1,4 +1,5 @@
 import { useLanguage } from "../../context/LanguageContext";
+import { formatNumber } from "../../utils/formatNumber";
 import CategorySelect from "./CategorySelect";
 
 export default function TransactionRow({ transaction, onCategoryChange }) {
@@ -25,7 +26,7 @@ export default function TransactionRow({ transaction, onCategoryChange }) {
         }`}
       >
         {transaction.type === "income" ? "+" : "-"}
-        {transaction.amount} {transaction.currency}
+        {formatNumber(transaction.amount)} {transaction.currency}
       </td>
     </tr>
   );
