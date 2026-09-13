@@ -9,6 +9,7 @@ export const translations = {
       home: "الرئيسية",
       accounts: "حساباتي",
       analysis: "تحليل الإنفاق",
+      assistant: "المساعد الذكي",
       logout: "تسجيل الخروج",
     },
     auth: {
@@ -116,6 +117,15 @@ export const translations = {
       emptySubtitle: "اربط حساب بنكي عشان نبدأ نحلل إنفاقك.",
       emptyCta: "ربط حساب بنكي",
     },
+    chat: {
+      title: "المساعد الذكي",
+      subtitle: "اسأل عن أرصدتك، معاملاتك، أو إنفاقك",
+      emptyGreeting: "أهلاً! اسألني مثلاً: كم صرفت هذا الشهر؟ أو وش أكبر فئة أصرف عليها؟",
+      inputPlaceholder: "اكتب سؤالك هنا...",
+      send: "إرسال",
+      thinking: "جاري التفكير...",
+      errorGeneric: "حدث خطأ، حاول مرة ثانية.",
+    },
     notFound: {
       message: "الصفحة غير موجودة.",
       backHome: "رجوع للوحة التحكم",
@@ -132,6 +142,7 @@ export const translations = {
       home: "Home",
       accounts: "Accounts",
       analysis: "Analysis",
+      assistant: "AI Assistant",
       logout: "Log out",
     },
     auth: {
@@ -239,6 +250,15 @@ export const translations = {
       emptySubtitle: "Link a bank account so we can start analyzing your spending.",
       emptyCta: "Link a bank account",
     },
+    chat: {
+      title: "AI Assistant",
+      subtitle: "Ask about your balances, transactions, or spending",
+      emptyGreeting: "Hi! Try asking: how much did I spend this month? Or what's my biggest spending category?",
+      inputPlaceholder: "Type your question here...",
+      send: "Send",
+      thinking: "Thinking...",
+      errorGeneric: "Something went wrong, please try again.",
+    },
     notFound: {
       message: "Page not found.",
       backHome: "Back to dashboard",
@@ -291,6 +311,7 @@ export const API_MESSAGES_EN = {
   "الحساب غير موجود": "Account not found",
   "تصنيف غير صالح": "Invalid category",
   "المعاملة غير موجودة": "Transaction not found",
+  "الرسالة مطلوبة": "Message is required",
   "خطأ في السيرفر": "Server error",
 };
 

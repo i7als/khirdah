@@ -6,6 +6,7 @@ import bankRoutes from "./routes/bank.routes.js";
 import accountRoutes from "./routes/account.routes.js";
 import transactionRoutes from "./routes/transaction.routes.js";
 import analysisRoutes from "./routes/analysis.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use("/api/banks", bankRoutes);
 app.use("/api/accounts", accountRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/analysis", analysisRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.use(errorHandler);
 

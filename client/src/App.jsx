@@ -11,6 +11,7 @@ import ConnectBankPage from "./pages/ConnectBankPage";
 import AccountsPage from "./pages/AccountsPage";
 import AccountDetailPage from "./pages/AccountDetailPage";
 import AnalysisPage from "./pages/AnalysisPage";
+import ChatPage from "./pages/ChatPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function AppToaster() {
@@ -87,6 +88,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AnalysisPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/assistant"
+              element={
+                <ProtectedRoute>
+                  <ChatPage />
                 </ProtectedRoute>
               }
             />

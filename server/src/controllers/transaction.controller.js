@@ -2,43 +2,54 @@ import Transaction from "../models/Transaction.js";
 import Account from "../models/Account.js";
 import { CATEGORIES } from "../utils/categories.js";
 
+export async function listTransactionsData(
+  userId,
+  { accountId, category, type, from, to, search, page = 1, limit = 20 } = {}
+) {
+  const filter = { user: userId };
+
+  if (accountId) {
+    const account = await Account.findOne({ _id: accountId, user: userId });
+    if (!account) {
+      const err = new Error("الحساب غير موجود");
+      err.code = "ACCOUNT_NOT_FOUND";
+      throw err;
+    }
+    filter.account = accountId;
+  }
+  if (category) filter.category = category;
+  if (type) filter.type = type;
+  if (search) {
+    const safe = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    filter.merchant = { $regex: safe, $options: "i" };
+  }
+  if (from || to) {
+    filter.date = {};
+    if (from) filter.date.$gte = new Date(from);
+    if (to) filter.date.$lte = new Date(to);
+  }
+
+  const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+  const limitNum = Math.min(Math.max(parseInt(limit, 10) || 20, 1), 100);
+
+  const [items, total] = await Promise.all([
+    Transaction.find(filter)
+      .sort("-date")
+      .skip((pageNum - 1) * limitNum)
+      .limit(limitNum),
+    Transaction.countDocuments(filter),
+  ]);
+
+  return { items, total, page: pageNum, limit: limitNum };
+}
+
 export async function listTransactions(req, res, next) {
   try {
-    const { accountId, category, type, from, to, search, page = 1, limit = 20 } = req.query;
-    const filter = { user: req.userId };
-
-    if (accountId) {
-      const account = await Account.findOne({ _id: accountId, user: req.userId });
-      if (!account) {
-        return res.status(404).json({ message: "الحساب غير موجود" });
-      }
-      filter.account = accountId;
-    }
-    if (category) filter.category = category;
-    if (type) filter.type = type;
-    if (search) {
-      const safe = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      filter.merchant = { $regex: safe, $options: "i" };
-    }
-    if (from || to) {
-      filter.date = {};
-      if (from) filter.date.$gte = new Date(from);
-      if (to) filter.date.$lte = new Date(to);
-    }
-
-    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
-    const limitNum = Math.min(Math.max(parseInt(limit, 10) || 20, 1), 100);
-
-    const [items, total] = await Promise.all([
-      Transaction.find(filter)
-        .sort("-date")
-        .skip((pageNum - 1) * limitNum)
-        .limit(limitNum),
-      Transaction.countDocuments(filter),
-    ]);
-
-    res.json({ items, total, page: pageNum, limit: limitNum });
+    res.json(await listTransactionsData(req.userId, req.query));
   } catch (err) {
+    if (err.code === "ACCOUNT_NOT_FOUND") {
+      return res.status(404).json({ message: err.message });
+    }
     next(err);
   }
 }

@@ -67,6 +67,9 @@ export default function Navbar() {
           <NavLink to="/analysis" className={navLinkClass}>
             {t("nav.analysis")}
           </NavLink>
+          <NavLink to="/assistant" className={navLinkClass}>
+            {t("nav.assistant")}
+          </NavLink>
         </nav>
       </div>
     </header>

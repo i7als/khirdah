@@ -1,12 +1,13 @@
 import Account from "../models/Account.js";
 import Transaction from "../models/Transaction.js";
 
+export async function getAccountsData(userId) {
+  return Account.find({ user: userId }).populate("bank", "name colorHex logoUrl").sort("-createdAt");
+}
+
 export async function listAccounts(req, res, next) {
   try {
-    const accounts = await Account.find({ user: req.userId })
-      .populate("bank", "name colorHex logoUrl")
-      .sort("-createdAt");
-    res.json(accounts);
+    res.json(await getAccountsData(req.userId));
   } catch (err) {
     next(err);
   }
