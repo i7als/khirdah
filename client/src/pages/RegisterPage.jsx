@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import LogoIcon from "../components/layout/LogoIcon";
+import Wordmark from "../components/layout/Wordmark";
 import { MailIcon, LockIcon, UserIcon } from "../components/icons";
 
 export default function RegisterPage() {
@@ -31,10 +31,9 @@ export default function RegisterPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-blue-50 to-slate-50 px-4">
       <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
-        <div className="mb-1 flex items-center justify-center gap-3">
-          <LogoIcon className="h-12 w-12 shrink-0" />
-          <h1 className="text-5xl font-extrabold tracking-tight text-blue-600">خرده</h1>
-        </div>
+        <h1 className="mb-1 text-center">
+          <Wordmark />
+        </h1>
         <p className="mb-6 text-center text-sm text-slate-500">إنشاء حساب</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">

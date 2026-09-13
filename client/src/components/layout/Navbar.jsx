@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import LogoIcon from "./LogoIcon";
+import Wordmark from "./Wordmark";
 
 const navLinkClass = ({ isActive }) =>
   `px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 active:scale-95 ${
@@ -20,9 +20,8 @@ export default function Navbar() {
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto max-w-5xl px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/dashboard" className="flex items-center gap-3">
-            <LogoIcon className="h-12 w-12 shrink-0" />
-            <span className="text-5xl font-extrabold tracking-tight text-blue-600">خرده</span>
+          <Link to="/dashboard" className="min-w-0 shrink">
+            <Wordmark className="text-3xl sm:text-4xl md:text-5xl" />
           </Link>
           <div className="flex items-center gap-3">
             <span className="hidden text-sm text-slate-500 sm:inline">{user?.name}</span>
